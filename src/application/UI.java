@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -47,6 +48,13 @@ public class UI {
 		}
 	}
 
+	public static void printMatch(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Turn : " + chessMatch.getTurn());
+		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+	}
+
 	public static void printBoard(ChessPiece[][] pieces) {
 
 		for (int i = 0; i < pieces.length; i++) {
@@ -69,22 +77,20 @@ public class UI {
 		}
 		System.out.println("  a b c d e f g h");
 	}
-	
+
 	private static void printPiece(ChessPiece piece, boolean background) {
 		if (background) {
 			System.out.print(ANSI_BLUE_BACKGROUND);
 		}
-    	if (piece == null) {
-            System.out.print("-" + ANSI_RESET);
-        }
-        else {
-            if (piece.getColor() == Color.WHITE) {
-                System.out.print(ANSI_WHITE + piece + ANSI_RESET);
-            }
-            else {
-                System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
-            }
-        }
-        System.out.print(" ");
+		if (piece == null) {
+			System.out.print("-" + ANSI_RESET);
+		} else {
+			if (piece.getColor() == Color.WHITE) {
+				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
+			} else {
+				System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+			}
+		}
+		System.out.print(" ");
 	}
 }
